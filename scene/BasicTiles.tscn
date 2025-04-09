@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwmspki617ebq"]
+
+[ext_resource type="Texture2D" uid="uid://dhdimlkchc1fw" path="res://assets/tiles/basic_tiles.png" id="1_3kg53"]
+[ext_resource type="Script" path="res://scripts/BasicTiles.gd" id="2_s7dag"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5o2j2"]
+texture = ExtResource("1_3kg53")
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/1 = 1
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/2 = 2
+0:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/3 = 3
+0:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_iqfah"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_5o2j2")
+
+[node name="BasicTiles" type="TileMapLayer"]
+tile_set = SubResource("TileSet_iqfah")
+script = ExtResource("2_s7dag")

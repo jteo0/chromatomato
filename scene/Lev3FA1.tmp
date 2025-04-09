@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=4 uid="uid://clc3mfun4odgw"]
+
+[ext_resource type="PackedScene" uid="uid://w0lyqn73jwwi" path="res://scene/Player.tscn" id="2_2le6k"]
+[ext_resource type="PackedScene" uid="uid://cwmspki617ebq" path="res://scene/BasicTiles.tscn" id="3_m22nl"]
+[ext_resource type="PackedScene" uid="uid://bf72mxgxlcy2l" path="res://scene/Chromatomato.tscn" id="4_2emqg"]
+[ext_resource type="PackedScene" uid="uid://3ql7l7bw4v8b" path="res://scene/ChromaCrystal.tscn" id="5_jle1f"]
+[ext_resource type="PackedScene" uid="uid://cit8wd5jyjpxv" path="res://scene/Transformation.tscn" id="5_l7s64"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Chromatomato" parent="." instance=ExtResource("4_2emqg")]
+z_index = 1
+z_as_relative = false
+position = Vector2(364, 486)
+
+[node name="Chromatomato2" parent="." instance=ExtResource("4_2emqg")]
+z_index = 1
+z_as_relative = false
+position = Vector2(493, 485)
+
+[node name="ChromaCrystal" parent="." instance=ExtResource("5_jle1f")]
+z_index = 1
+z_as_relative = false
+position = Vector2(861, 432)
+
+[node name="BasicTiles" parent="." instance=ExtResource("3_m22nl")]
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAAKAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAGAAwAAAAAAAAAAAAFAAwAAAAAAAAAAAAEAAwAAAAAAAAAAAADAAwAAAAAAAAAAAACAAwAAAAAAAAAAAABAAwAAAAAAAAAAAAAAAwAAAAAAAAAAAAGABAAAAAAAAAAAAAHABAAAAAAAAAAAAAIABAAAAAAAAAAAAAJABAAAAAAAAAAAAAKABAAAAAAAAAAAAALABAAAAAAAAAAAAAMABAAAAAAAAAAAAANABAAAAAAAAAAAAAOABAAAAAAAAAAAAAPABAAAAAAAAAAAAAQABAAAAAAAAAAAAARABAAAAAAAAAAAAASABAAAAAAAAAAAAATABAAAAAAAAAAAAAUABAAAAAAAAAAAAAVABAAAAAAAAAAAAAWABAAAAAAAAAAAAAXABAAAAAAAAAAAAAYABAAAAAAAAAAAAAZABAAAAAAAAAAAAAaABAAAAAAAAAAAAAbABAAAAAAAAAAAAAcABAAAAAAAAAAAAAdABAAAAAAAAAAAAA=")
+use_kinematic_bodies = true
+
+[node name="Transformation" parent="." instance=ExtResource("5_l7s64")]
+visible = false
+z_index = 3
+z_as_relative = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Player" parent="CanvasLayer" instance=ExtResource("2_2le6k")]
+z_index = 4
+z_as_relative = false
+position = Vector2(133, 240)
+scale = Vector2(2, 2)

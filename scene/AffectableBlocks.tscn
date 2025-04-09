@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbwur72oybimp"]
+
+[ext_resource type="Texture2D" uid="uid://dhdimlkchc1fw" path="res://assets/tiles/basic_tiles.png" id="1_ajmrn"]
+[ext_resource type="Script" path="res://scripts/AffectableBlocks.gd" id="1_k1725"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sv23"]
+atlas = ExtResource("1_ajmrn")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc4jt"]
+atlas = ExtResource("1_ajmrn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_robjg"]
+atlas = ExtResource("1_ajmrn")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu2j8"]
+atlas = ExtResource("1_ajmrn")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7pqqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sv23")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc4jt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_robjg")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu2j8")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mlw4"]
+size = Vector2(64, 64)
+
+[node name="AffectableBlocks" type="RigidBody2D" groups=["affectable_blocks"]]
+script = ExtResource("1_k1725")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_7pqqk")
+animation = &"blue"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_3mlw4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
