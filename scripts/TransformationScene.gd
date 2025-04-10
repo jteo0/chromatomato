@@ -1,6 +1,7 @@
 extends Control
 
-@export var transform_cost = 1
+@export var transform_cost = 5
+@export var transform_env = 2
 
 @onready var color_indicator = $CanvasLayer/ColorPick
 @onready var overlay = $CanvasLayer
@@ -17,6 +18,7 @@ func _ready() -> void:
 	color_switch(color_pointer)
 
 func _process(_delta: float) -> void:
+	SignalBus.hp_down.emit(transform_env)
 	if Input.is_action_just_pressed("move_left"):
 		if color_pointer != 0:
 			color_pointer -= 1
@@ -35,6 +37,7 @@ func _process(_delta: float) -> void:
 		
 	if Input.is_action_just_pressed("transform"):
 		if !SignalBus.in_transform:
+			SignalBus.hp_down.emit(transform_cost)
 			transformation_start()
 		else:
 			transformation_end()

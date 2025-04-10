@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4r2hopiadqx0"
-path="res://.godot/imported/white_filledin.png-d9aabcc0a1e0dc0d23a2f20cddc96f9a.ctex"
+uid="uid://b0uuhjcxfdwo8"
+path="res://.godot/imported/pixelart_starfield.png-ade76814d71dd2c257632d0161d95afe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/white_filledin.png"
-dest_files=["res://.godot/imported/white_filledin.png-d9aabcc0a1e0dc0d23a2f20cddc96f9a.ctex"]
+source_file="res://assets/backgrounds/pixelart_starfield.png"
+dest_files=["res://.godot/imported/pixelart_starfield.png-ade76814d71dd2c257632d0161d95afe.ctex"]
 
 [params]
 

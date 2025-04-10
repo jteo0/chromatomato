@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgpd5nb330w3p"
-path="res://.godot/imported/bg.png-23a59c2e9cba2223a50fa3fe41b70b25.ctex"
+uid="uid://chcinbh3px4i0"
+path="res://.godot/imported/pixelart_starfield_corona.png-b372cb474cd616b3217b74ad1c97b710.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bg.png"
-dest_files=["res://.godot/imported/bg.png-23a59c2e9cba2223a50fa3fe41b70b25.ctex"]
+source_file="res://assets/backgrounds/pixelart_starfield_corona.png"
+dest_files=["res://.godot/imported/pixelart_starfield_corona.png-b372cb474cd616b3217b74ad1c97b710.ctex"]
 
 [params]
 

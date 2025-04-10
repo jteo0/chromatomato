@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var freeze_cost = 1
 @export var break_cost = 1
 @export var charge_cost = 1
+@export var env_damage = 1
 
 @onready var player_sprite = $PlayerSprite
 @onready var default_collision = $DefaultCollision
@@ -36,12 +37,15 @@ var bodies_right: Array[Node2D] = []
 
 func _ready() -> void:
 	await healthbar.ready
-	healthbar.init_health(100)
+	healthbar.init_health(health)
 	
 	set_state_form(SignalBus.States.IDLE, SignalBus.Forms.FORM_WHITE)
 	
 	SignalBus.tomato_pickup.connect(add_tomato)
 	SignalBus.finish_transformation.connect(set_state_form)
+
+func _process(delta: float) -> void:
+	SignalBus.hp_down.emit(env_damage)
 
 func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
 	@warning_ignore("unused_variable")
@@ -149,9 +153,6 @@ func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
 					walk_speed = 200
 					player_sprite.play("interact_right_yellow")
 
-func _process(_delta: float) -> void:
-	pass
-	
 func _physics_process(delta):
 	velocity.y += delta * gravity
 	
@@ -197,10 +198,13 @@ func handle_movement():
 			SignalBus.Forms.FORM_WHITE:
 				pass
 			SignalBus.Forms.FORM_YELLOW:
+				SignalBus.hp_down.emit(break_cost)
 				break_object()
 			SignalBus.Forms.FORM_RED:
+				SignalBus.hp_down.emit(charge_cost)
 				push_object()
 			SignalBus.Forms.FORM_BLUE:
+				SignalBus.hp_down.emit(freeze_cost)
 				interact_blue()
 
 func add_tomato():

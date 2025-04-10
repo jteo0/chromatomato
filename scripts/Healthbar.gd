@@ -14,7 +14,7 @@ func _ready() -> void:
 	SignalBus.repause.connect(pause_again)
 
 func _process(_delta: float) -> void:
-	countdown(env_damage)
+	pass
 
 func _set_health(new_health):
 	var prev_health = health

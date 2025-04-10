@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kmyumyhjlt08"
-path="res://.godot/imported/test_tiles.png-b5560d7567cbf988b7ce9061da725375.ctex"
+uid="uid://rt3105co63mn"
+path="res://.godot/imported/pixelart_starfield_diagonal_diffraction_spikes.png-e9ef704a16d32a8730eba0e2c2033d44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test_tiles.png"
-dest_files=["res://.godot/imported/test_tiles.png-b5560d7567cbf988b7ce9061da725375.ctex"]
+source_file="res://assets/backgrounds/pixelart_starfield_diagonal_diffraction_spikes.png"
+dest_files=["res://.godot/imported/pixelart_starfield_diagonal_diffraction_spikes.png-e9ef704a16d32a8730eba0e2c2033d44.ctex"]
 
 [params]
 

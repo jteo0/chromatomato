@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwvkhn6ui7652"
-path="res://.godot/imported/white_line.png-abbe4cb2c6ef0ee90ed9d1f90f347929.ctex"
+uid="uid://dpao4fpntypu3"
+path="res://.godot/imported/basic_tiles_blank.png-f5fbedb42264c3127afa3f62b4a2df8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/white_line.png"
-dest_files=["res://.godot/imported/white_line.png-abbe4cb2c6ef0ee90ed9d1f90f347929.ctex"]
+source_file="res://assets/tiles/basic_tiles_blank.png"
+dest_files=["res://.godot/imported/basic_tiles_blank.png-f5fbedb42264c3127afa3f62b4a2df8c.ctex"]
 
 [params]
 

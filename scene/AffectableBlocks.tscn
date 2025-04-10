@@ -1,29 +1,29 @@
 [gd_scene load_steps=9 format=3 uid="uid://dbwur72oybimp"]
 
-[ext_resource type="Texture2D" uid="uid://dhdimlkchc1fw" path="res://assets/tiles/basic_tiles.png" id="1_ajmrn"]
 [ext_resource type="Script" path="res://scripts/AffectableBlocks.gd" id="1_k1725"]
+[ext_resource type="Texture2D" uid="uid://dpao4fpntypu3" path="res://assets/tiles/basic_tiles_blank.png" id="2_kv6h5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7sv23"]
-atlas = ExtResource("1_ajmrn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfe0w"]
+atlas = ExtResource("2_kv6h5")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cc4jt"]
-atlas = ExtResource("1_ajmrn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c6jg"]
+atlas = ExtResource("2_kv6h5")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_robjg"]
-atlas = ExtResource("1_ajmrn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gprjh"]
+atlas = ExtResource("2_kv6h5")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iu2j8"]
-atlas = ExtResource("1_ajmrn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpbw8"]
+atlas = ExtResource("2_kv6h5")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7pqqk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7sv23")
+"texture": SubResource("AtlasTexture_qfe0w")
 }],
 "loop": true,
 "name": &"blue",
@@ -31,7 +31,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cc4jt")
+"texture": SubResource("AtlasTexture_4c6jg")
 }],
 "loop": true,
 "name": &"default",
@@ -39,7 +39,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_robjg")
+"texture": SubResource("AtlasTexture_gprjh")
 }],
 "loop": true,
 "name": &"red",
@@ -47,7 +47,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iu2j8")
+"texture": SubResource("AtlasTexture_mpbw8")
 }],
 "loop": true,
 "name": &"yellow",
@@ -63,7 +63,8 @@ script = ExtResource("1_k1725")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_7pqqk")
-animation = &"blue"
+animation = &"yellow"
+frame_progress = 0.108629
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)
