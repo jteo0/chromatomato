@@ -9,9 +9,11 @@ var health = 0 : set = _set_health
 
 func _ready() -> void:
 	SignalBus.hp_down.connect(countdown)
-	SignalBus.pause_pressed.connect(pause_bar)
+	SignalBus.turn_pausable.connect(if_paused)
+	SignalBus.turn_always.connect(not_paused)
+	SignalBus.repause.connect(pause_again)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	countdown(env_damage)
 
 func _set_health(new_health):
@@ -20,6 +22,10 @@ func _set_health(new_health):
 	value = health
 	
 	if health <= 0:
+		set_process(false)
+		SignalBus.dead.emit()
+		var death_screen = preload("res://scene/Dead.tscn").instantiate()
+		get_tree().root.add_child(death_screen)
 		queue_free()
 		
 	if health < prev_health:
@@ -43,5 +49,12 @@ func _on_timer_timeout() -> void:
 func countdown(hp_down):
 	_set_health(health - hp_down)
 	
-func pause_bar(active: bool):
-	set_process(!active)
+func if_paused():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+
+func not_paused():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+func pause_again():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().paused = true

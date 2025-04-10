@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpwj8mjq1nuh"]
+
+[ext_resource type="Script" path="res://scripts/Congrats.gd" id="1_wlyav"]
+[ext_resource type="FontFile" uid="uid://c2iirk14s2bs3" path="res://assets/fonts/WINKLE-REGULAR.OTF" id="2_p1a0r"]
+
+[node name="Congrats" type="CanvasLayer"]
+script = ExtResource("1_wlyav")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelName" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_p1a0r")
+theme_override_font_sizes/font_size = 132
+text = "TEST"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="Control"]
+wait_time = 5.0
+
+[connection signal="timeout" from="Control/Timer" to="." method="_on_timer_timeout"]

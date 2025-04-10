@@ -1,13 +1,36 @@
-[gd_scene load_steps=40 format=3 uid="uid://b8gjj2eof1ope"]
+[gd_scene load_steps=39 format=3 uid="uid://b8gjj2eof1ope"]
 
 [ext_resource type="Script" path="res://scripts/Controls.gd" id="1_53ulw"]
 [ext_resource type="Texture2D" uid="uid://cgpd5nb330w3p" path="res://assets/bg.png" id="1_oxufv"]
 [ext_resource type="Texture2D" uid="uid://bumfydjwcg38w" path="res://assets/player/player_2_walk.png" id="2_pi36m"]
+[ext_resource type="Texture2D" uid="uid://dt007uu5g6ybb" path="res://assets/UI/messy_arrow_left.png" id="3_5l6bj"]
 [ext_resource type="Texture2D" uid="uid://da7ur8n3m5plu" path="res://assets/player/player_2_jump.png" id="3_5xkex"]
+[ext_resource type="Texture2D" uid="uid://dcdcy7qt3hlma" path="res://assets/UI/messy_arrow_right_flipped.png" id="4_0qor2"]
+[ext_resource type="Texture2D" uid="uid://xnluixky6q3y" path="res://assets/UI/A.png" id="4_gibe2"]
 [ext_resource type="Texture2D" uid="uid://3mtgfsj6xc2l" path="res://assets/player/player_2_interact_up.png" id="4_s5qk6"]
-[ext_resource type="Texture2D" uid="uid://cakan65pytfab" path="res://assets/player/player_blue_walk.png" id="5_0tuvf"]
-[ext_resource type="Texture2D" uid="uid://dt4s7m0h2rciw" path="res://assets/player/player_red_walk.png" id="6_3e3o4"]
-[ext_resource type="Texture2D" uid="uid://cd727h6ld4d53" path="res://assets/player/player_yellow_walk.png" id="7_vc2s5"]
+[ext_resource type="Texture2D" uid="uid://b35ty268c5n4y" path="res://assets/UI/D.png" id="5_6pd8g"]
+[ext_resource type="Texture2D" uid="uid://feegcotn3sty" path="res://assets/UI/spacebar.png" id="7_pk6th"]
+[ext_resource type="Texture2D" uid="uid://tipj2xph50wg" path="res://assets/UI/mouse_empty.png" id="9_joahr"]
+[ext_resource type="Texture2D" uid="uid://l5mosk5800kr" path="res://assets/UI/mouse_empty_2.png" id="10_n8uoo"]
+[ext_resource type="Texture2D" uid="uid://cvj2nv6gmkwxg" path="res://assets/player/player_2_colored.png" id="12_504yl"]
+[ext_resource type="Texture2D" uid="uid://bdvyewxhd5brp" path="res://assets/player/player_2_blue.png" id="13_vhcys"]
+[ext_resource type="Texture2D" uid="uid://ervgrfg8stfj" path="res://assets/player/player_2_red.png" id="14_r5h0w"]
+[ext_resource type="Texture2D" uid="uid://3e71ywrsfyqt" path="res://assets/UI/E.png" id="14_rf1g6"]
+[ext_resource type="Texture2D" uid="uid://dnvr3wt7pj5gv" path="res://assets/player/player_2_yellow.png" id="15_4fsds"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_5pr8p"]
+frames = 2
+frame_0/texture = ExtResource("3_5l6bj")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("4_0qor2")
+frame_1/duration = 0.5
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_7rj8w"]
+frames = 2
+frame_0/texture = ExtResource("9_joahr")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("10_n8uoo")
+frame_1/duration = 0.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lv2ka"]
 atlas = ExtResource("2_pi36m")
@@ -110,124 +133,40 @@ animations = [{
 "speed": 25.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0d626"]
-atlas = ExtResource("2_pi36m")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l386"]
+atlas = ExtResource("12_504yl")
 region = Rect2(0, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r8e15"]
-atlas = ExtResource("2_pi36m")
-region = Rect2(32, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7y8jh"]
-atlas = ExtResource("2_pi36m")
-region = Rect2(64, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k5p3x"]
-atlas = ExtResource("2_pi36m")
-region = Rect2(96, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6fjig"]
-atlas = ExtResource("5_0tuvf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeiul"]
+atlas = ExtResource("13_vhcys")
 region = Rect2(0, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ac5w"]
-atlas = ExtResource("5_0tuvf")
-region = Rect2(32, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8so3f"]
-atlas = ExtResource("5_0tuvf")
-region = Rect2(64, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j5p14"]
-atlas = ExtResource("5_0tuvf")
-region = Rect2(96, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4jaqx"]
-atlas = ExtResource("6_3e3o4")
+[sub_resource type="AtlasTexture" id="AtlasTexture_30qvr"]
+atlas = ExtResource("14_r5h0w")
 region = Rect2(0, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tqdnr"]
-atlas = ExtResource("6_3e3o4")
-region = Rect2(32, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f7c6m"]
-atlas = ExtResource("6_3e3o4")
-region = Rect2(64, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_63cre"]
-atlas = ExtResource("6_3e3o4")
-region = Rect2(96, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ct6sj"]
-atlas = ExtResource("7_vc2s5")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gldjh"]
+atlas = ExtResource("15_4fsds")
 region = Rect2(0, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v43xt"]
-atlas = ExtResource("7_vc2s5")
-region = Rect2(32, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k375m"]
-atlas = ExtResource("7_vc2s5")
-region = Rect2(64, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h3swj"]
-atlas = ExtResource("7_vc2s5")
-region = Rect2(96, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s0lbd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0d626")
+"texture": SubResource("AtlasTexture_6l386")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r8e15")
+"texture": SubResource("AtlasTexture_aeiul")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7y8jh")
+"texture": SubResource("AtlasTexture_30qvr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k5p3x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6fjig")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ac5w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8so3f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j5p14")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4jaqx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tqdnr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f7c6m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_63cre")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ct6sj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v43xt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k375m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h3swj")
+"texture": SubResource("AtlasTexture_gldjh")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [node name="ControlsScreen" type="Control"]
@@ -248,10 +187,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_oxufv")
 
-[node name="BackButton" type="TextureButton" parent="."]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BackButton" type="TextureButton" parent="CanvasLayer"]
+z_index = 21
+anchors_preset = -1
+anchor_right = 0.068
+anchor_bottom = 0.11
+offset_right = 3.71999
+offset_bottom = 6.59999
+texture_normal = SubResource("AnimatedTexture_5pr8p")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -260,56 +205,68 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_top = 34
+theme_override_constants/margin_bottom = 149
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 123
+size_flags_vertical = 8
+theme_override_constants/separation = 108
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Walking" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="WalkingControl" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_gibe2")
+stretch_mode = 3
+
+[node name="WalkingControl2" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_6pd8g")
+stretch_mode = 3
+
+[node name="JumpControl" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_pk6th")
+stretch_mode = 3
+
+[node name="Mouse" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_7rj8w")
+stretch_mode = 3
+
+[node name="E" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_rf1g6")
+stretch_mode = 3
+
+[node name="Walking" type="AnimatedSprite2D" parent="."]
+position = Vector2(161, 191)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dd4g1")
 frame = 3
 frame_progress = 0.18736
 
-[node name="WalkingControl" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Jump" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Jump" type="AnimatedSprite2D" parent="."]
+position = Vector2(426, 186)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hjjwj")
 frame = 1
 frame_progress = 0.583592
 
-[node name="JumpControl" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Interact" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Interact" type="AnimatedSprite2D" parent="."]
+position = Vector2(665, 187)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_uimk6")
 frame_progress = 0.0985388
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Transform" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="Transform" type="AnimatedSprite2D" parent="."]
+position = Vector2(836, 185)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_s0lbd")
-frame = 8
-frame_progress = 0.607051
+frame_progress = 0.773943
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

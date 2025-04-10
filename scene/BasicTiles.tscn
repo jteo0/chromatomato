@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwmspki617ebq"]
+[gd_scene load_steps=4 format=3 uid="uid://cwmspki617ebq"]
 
 [ext_resource type="Texture2D" uid="uid://dhdimlkchc1fw" path="res://assets/tiles/basic_tiles.png" id="1_3kg53"]
-[ext_resource type="Script" path="res://scripts/BasicTiles.gd" id="2_s7dag"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5o2j2"]
 texture = ExtResource("1_3kg53")
@@ -29,4 +28,3 @@ sources/0 = SubResource("TileSetAtlasSource_5o2j2")
 
 [node name="BasicTiles" type="TileMapLayer"]
 tile_set = SubResource("TileSet_iqfah")
-script = ExtResource("2_s7dag")

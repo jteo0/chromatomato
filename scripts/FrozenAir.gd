@@ -8,8 +8,6 @@ func _ready():
 	$AnimatedSprite2D.play("spawn_in")
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
-	
-	SignalBus.pause_pressed.connect(_on_pause_changed)
 
 func _process(delta: float) -> void:
 	if timer_active and not get_tree().paused:

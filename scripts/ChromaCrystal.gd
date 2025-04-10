@@ -1,7 +1,9 @@
 extends Area2D
 
 @export var total_tomato = 4.0
+@export var level: String = "0: Beginning"
 var taken_tomato = 0.0
+var level_done = false
 
 @onready var crystal_sprite = $CrystalSprite
 
@@ -26,11 +28,17 @@ func count_frac():
 			crystal_sprite.play("quarterup")
 		1.0:
 			crystal_sprite.play("full")
-			SignalBus.level_done.emit()
+			complete_level()
 
 func _on_crystal_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group("player"):
 		taken_tomato += SignalBus.player_tomato
 		SignalBus.player_tomato = 0
 		count_frac()
-		print("Taken: ", taken_tomato)
+
+func complete_level():
+	if !level_done:
+		var congrats = preload("res://scene/Congrats.tscn").instantiate()
+		get_tree().root.add_child(congrats)
+		SignalBus.level_done.emit(level)
+		level_done = true

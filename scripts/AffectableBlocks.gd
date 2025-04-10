@@ -3,8 +3,6 @@ extends RigidBody2D
 @export var freeze_duration := 2.0
 @export var shake_intensity: float = 5.0
 @export var shake_duration: float = 0.3
-@export var push_force := 1000.0
-@export var push_duration := 1.0
 
 @onready var animated_player = $AnimatedSprite2D
 @onready var original_position = position

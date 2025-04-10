@@ -10,12 +10,13 @@ var color_pointer = 0
 var form_color = 0
 
 func _ready() -> void:
-	SignalBus.pause_pressed.connect(if_paused)
+	SignalBus.turn_pausable.connect(if_paused)
+	SignalBus.turn_always.connect(not_paused)
+	SignalBus.repause.connect(pause_again)
 	overlay.visible = false
-	
 	color_switch(color_pointer)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("move_left"):
 		if color_pointer != 0:
 			color_pointer -= 1
@@ -33,16 +34,15 @@ func _process(delta: float) -> void:
 		color_switch(color_pointer)
 		
 	if Input.is_action_just_pressed("transform"):
-		if !SignalBus.in_transformation:
+		if !SignalBus.in_transform:
 			transformation_start()
 		else:
 			transformation_end()
 		
 func transformation_start():
-	SignalBus.in_transformation = true
+	SignalBus.in_transform = true
 	color_check()
 	color_switch(color_pointer)
-	print("emit transform")
 
 func transformation_end():
 	var final_color
@@ -57,13 +57,13 @@ func transformation_end():
 			final_color = SignalBus.Forms.FORM_BLUE
 	
 	SignalBus.current_form = final_color
-	SignalBus.in_transformation = false
+	SignalBus.in_transform = false
 	overlay.visible = false
-	get_tree().paused = false
+	PauseManager.set_paused(false, "transformation")
 	
 	SignalBus.finish_transformation.emit(SignalBus.current_state, final_color)
 	SignalBus.hp_down.emit(transform_cost)
-
+	
 func color_check(): 
 	form_color = SignalBus.current_form
 	match form_color:
@@ -77,9 +77,8 @@ func color_check():
 			color_pointer = 1
 
 	overlay.visible = true
-	print("color_pointer: ", color_pointer)
 	
-	get_tree().paused = true
+	PauseManager.set_paused(true, "transformation")
 		
 # Checking the color of the indicator
 func color_switch(pointer):
@@ -92,6 +91,13 @@ func color_switch(pointer):
 			color_indicator.play("pick_red")
 		3:
 			color_indicator.play("pick_blue")
+			
+func if_paused():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 
-func if_paused(active: bool):
-	set_process(!active)
+func not_paused():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+func pause_again():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().paused = true

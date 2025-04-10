@@ -628,6 +628,9 @@ position = Vector2(-24, 8)
 scale = Vector2(1.5, 4.7)
 shape = SubResource("RectangleShape2D_f7krn")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(78, -57)
+
 [connection signal="body_entered" from="CheckUp" to="." method="_on_check_up_body_entered"]
 [connection signal="body_exited" from="CheckUp" to="." method="_on_check_up_body_exited"]
 [connection signal="body_entered" from="CheckDown" to="." method="_on_check_down_body_entered"]

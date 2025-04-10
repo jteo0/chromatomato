@@ -205,10 +205,6 @@ func handle_movement():
 
 func add_tomato():
 	SignalBus.player_tomato += 1.0	
-	print(SignalBus.player_tomato)
-	
-func give_tomato():
-	SignalBus.tomato_give.emit()
 
 func get_mouse_cardinal_direction() -> Vector2:
 	var mouse_pos = get_global_mouse_position()
@@ -256,7 +252,6 @@ func interact_blue():
 func break_object():
 	var targets: Array[Node2D] = []
 	var dir = get_mouse_cardinal_direction()
-	var target_position = global_position
 
 	match dir:
 		Vector2.UP:
@@ -345,40 +340,6 @@ func _on_check_down_body_exited(body: Node2D) -> void:
 func _on_check_up_body_exited(body: Node2D) -> void:
 	exists_up = false
 	bodies_up.erase(body)
-
-func push_tilemap_tiles(tilemap: TileMap, dir: Vector2):
-	var origin = tilemap.local_to_map(global_position)
-	var max_push_distance = 4
-
-	for i in range(1, max_push_distance + 1):
-		var cell_pos = origin + dir * i
-		var tile_data = tilemap.get_cell_tile_data(0, cell_pos)
-		
-		if tile_data:
-			print("Pushing tile at: ", cell_pos)
-
-			var target_pos = cell_pos + dir
-			# Check if target cell is empty
-			if tilemap.get_cell_source_id(0, target_pos) == -1:
-				# Move the tile
-				var source_id = tilemap.get_cell_source_id(0, cell_pos)
-				var atlas_coords = tilemap.get_cell_atlas_coords(0, cell_pos)
-				var alt = tilemap.get_cell_alternative_tile(0, cell_pos)
-
-				tilemap.set_cell(0, target_pos, source_id, atlas_coords, alt)
-				tilemap.erase_cell(0, cell_pos)
-			else:
-				print("Blocked at: ", target_pos)
-
-func get_tiles_in_direction(tilemap_layer: TileMapLayer, dir: Area2D) -> Array[Vector2i]:
-	var tiles: Array[Vector2i] = tilemap_layer.get_used_cells()
-	var relevant_tiles: Array[Node2D]
-	
-	relevant_tiles = dir.get_overlapping_bodies()
-	
-	print(tiles)
-	print(relevant_tiles)
-	return tiles
 	
 func take_damage(dmg):
 	SignalBus.hp_down.emit(dmg)

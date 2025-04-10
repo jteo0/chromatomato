@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctg855rpu4r33"]
+
+[ext_resource type="Script" path="res://scripts/StageSelect.gd" id="1_x5oji"]
+[ext_resource type="Texture2D" uid="uid://cgpd5nb330w3p" path="res://assets/bg.png" id="2_85sk4"]
+[ext_resource type="Texture2D" uid="uid://b2h4ey5rigq7l" path="res://assets/UI/stageselect1_1.png" id="3_fkt1l"]
+[ext_resource type="Texture2D" uid="uid://cirfjd0w7gire" path="res://assets/UI/stageselect1_1words.png" id="3_rthec"]
+[ext_resource type="Texture2D" uid="uid://dhp1mqdjtrn07" path="res://assets/UI/stageselect1_words.png" id="4_hkd8b"]
+[ext_resource type="Texture2D" uid="uid://4mtiq422pmpt" path="res://assets/UI/stageselect2_1.png" id="4_wu1mg"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_vrl51"]
+frames = 2
+frame_0/texture = ExtResource("3_rthec")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("4_hkd8b")
+frame_1/duration = 0.2
+
+[node name="StageSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x5oji")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_85sk4")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0646965, 0.0646965, 0.0646965, 0.168627)
+
+[node name="CongratsBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Congratulations" type="RichTextLabel" parent="CongratsBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TimeLabel" type="RichTextLabel" parent="CongratsBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.5
+offset_right = 296.5
+offset_bottom = 103.0
+grow_horizontal = 2
+
+[node name="Stage0" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_rthec")
+texture_hover = SubResource("AnimatedTexture_vrl51")
+texture_disabled = ExtResource("3_fkt1l")
+
+[node name="Stage1" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_disabled = ExtResource("4_wu1mg")
+
+[connection signal="pressed" from="VBoxContainer/Stage0" to="." method="_on_stage_0_pressed"]

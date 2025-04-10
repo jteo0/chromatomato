@@ -4,22 +4,24 @@ extends Area2D
 
 var is_collected: bool = false
 
+var bob_height: float = 12.0
+var bob_speed: float = 1.5
+var random_offset: float = 0.0
+
+var start_y: float = 0.0
+
 func _ready():
 	animated_player.play("default")
-	SignalBus.tomato_give.connect(to_crystal)
+	
+	self.start_y = position.y
+	random_offset = randf_range(0, 2 * PI)
+
+func _process(_delta):
+	var time = Time.get_ticks_msec() / 1000.0
+	self.position.y = start_y + sin(time * bob_speed + random_offset) * bob_height
 
 func _on_chromatomato_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group("player") and !self.is_collected:
 		self.is_collected = true
 		SignalBus.tomato_pickup.emit()
-		follow_player()
-		print("caught: tomato")
-
-# follow the player after being picked up
-func follow_player():
-	pass
-
-# Either move into the crystal or just disappear, preferably with an animation
-func to_crystal():
-	if self.is_collected:
 		self.visible = false

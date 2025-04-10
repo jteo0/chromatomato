@@ -4,19 +4,21 @@ func _ready() -> void:
 	visible = false
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("escape") and !get_tree().paused:
+	if Input.is_action_just_pressed("escape") and !PauseManager.pause_menu:
 		pause()
-	elif Input.is_action_just_pressed("escape") and get_tree().paused:
+	elif Input.is_action_just_pressed("escape") and PauseManager.pause_menu:
 		resume()
 
 func resume():
-	SignalBus.pause_pressed.emit(false)
-	get_tree().paused = false
+	if PauseManager.transformation_active:
+		SignalBus.repause.emit()
+		PauseManager.set_paused(false, "pause_menu")
+		PauseManager.set_paused(true, "transformation")
+	PauseManager.set_paused(false, "pause_menu")
 	visible = false
 	
 func pause():
-	SignalBus.pause_pressed.emit(true)
-	get_tree().paused = true
+	PauseManager.set_paused(true, "pause_menu")
 	visible = true
 
 func _on_continue_button_pressed() -> void:

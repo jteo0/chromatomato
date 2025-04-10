@@ -32,6 +32,8 @@ position = Vector2(493, 485)
 z_index = 1
 z_as_relative = false
 position = Vector2(861, 432)
+total_tomato = 4.0
+level_name = "1: Ramp"
 
 [node name="BasicTiles" parent="." instance=ExtResource("3_m22nl")]
 scale = Vector2(0.5, 0.5)
@@ -46,15 +48,13 @@ offset_bottom = 24.0
 max_value = 10000.0
 value = 10000.0
 
-[node name="PauseMenu" parent="HUD" instance=ExtResource("7_5omko")]
-z_index = 3
-
 [node name="Transformation" parent="HUD" instance=ExtResource("5_l7s64")]
 z_index = 3
-z_as_relative = false
 
 [node name="AffectableBlocks" parent="." instance=ExtResource("9_xmuwc")]
 position = Vector2(297, 307)
 
 [node name="AffectableBlocks2" parent="." instance=ExtResource("9_xmuwc")]
 position = Vector2(301, 265)
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_5omko")]
