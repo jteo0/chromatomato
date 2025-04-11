@@ -69,3 +69,6 @@ func break_block(me):
 		tween.tween_property(me, "global_position", original_pos - Vector2(5, 0), 0.05)
 		tween.tween_property(me, "global_position", original_pos, 0.05)
 		tween.tween_callback(Callable(me, "queue_free"))
+		
+		await tween.finished
+		SignalBus.play_sound.emit("Block Break 1.wav")

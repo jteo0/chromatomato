@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://3d3ed3f3iugi"]
+
+[ext_resource type="Script" path="res://scripts/ChokeZone.gd" id="1_qvj2y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_si5yu"]
+
+[node name="ChokeZone" type="Area2D"]
+script = ExtResource("1_qvj2y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_si5yu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

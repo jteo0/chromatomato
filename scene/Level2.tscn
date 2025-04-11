@@ -1,3 +1,91 @@
-[gd_scene format=3 uid="uid://b7hh4wggqoi6o"]
+[gd_scene load_steps=12 format=4 uid="uid://t2dpg7xjrirn"]
+
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="1_3wywn"]
+[ext_resource type="PackedScene" uid="uid://w0lyqn73jwwi" path="res://scene/Player.tscn" id="1_6y2ec"]
+[ext_resource type="PackedScene" uid="uid://bf72mxgxlcy2l" path="res://scene/Chromatomato.tscn" id="2_6mde4"]
+[ext_resource type="Texture2D" uid="uid://3cqwful8cyhn" path="res://assets/backgrounds/Space Background10.png" id="2_fhnim"]
+[ext_resource type="PackedScene" uid="uid://3ql7l7bw4v8b" path="res://scene/ChromaCrystal.tscn" id="3_6ihyg"]
+[ext_resource type="PackedScene" uid="uid://cwmspki617ebq" path="res://scene/BasicTiles.tscn" id="4_fkjvw"]
+[ext_resource type="PackedScene" uid="uid://2y8k52fa645v" path="res://scene/Healthbar.tscn" id="5_tu1n1"]
+[ext_resource type="PackedScene" uid="uid://cit8wd5jyjpxv" path="res://scene/Transformation.tscn" id="6_fnm3g"]
+[ext_resource type="PackedScene" uid="uid://dbwur72oybimp" path="res://scene/AffectableBlocks.tscn" id="7_ce001"]
+[ext_resource type="PackedScene" uid="uid://quhukba6q1eq" path="res://scene/PauseMenu.tscn" id="8_ajdvk"]
+[ext_resource type="PackedScene" uid="uid://3d3ed3f3iugi" path="res://scene/ChokeZone.tscn" id="10_tsmrr"]
 
 [node name="Level2" type="Node2D"]
+script = ExtResource("1_3wywn")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_fhnim")
+
+[node name="Player" parent="." instance=ExtResource("1_6y2ec")]
+top_level = false
+z_index = 13
+z_as_relative = false
+position = Vector2(-46, 449)
+scale = Vector2(2, 2)
+
+[node name="Chromatomato2" parent="." instance=ExtResource("2_6mde4")]
+z_index = 1
+z_as_relative = false
+position = Vector2(1114, 351)
+
+[node name="Chromatomato3" parent="." instance=ExtResource("2_6mde4")]
+position = Vector2(2333, 470)
+
+[node name="ChromaCrystal" parent="." instance=ExtResource("3_6ihyg")]
+z_index = 1
+z_as_relative = false
+position = Vector2(1439, 421)
+total_tomato = 2.0
+level = "2: Break"
+
+[node name="BasicTiles" parent="." instance=ExtResource("4_fkjvw")]
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAAAABAAAQAAAAAAAAABABAAAQAAAAAAAAACABAAAQAAAAAAAAADABAAAQAAAAAAAAAEABAAAQAAAAAAAAAFABAAAQAAAAAAAAAGABAAAQAAAAAAAAAHABAAAQAAAAAAAAAIABAAAQAAAAAAAAAJABAAAQAAAAAAAAAKABAAAQAAAAAAAAALABAAAQAAAAAAAAAMABAAAQAAAAAAAAANABAAAQAAAAAAAAAOABAAAQAAAAAAAAAPABAAAQAAAAAAAAAQABAAAQAAAAAAAAARABAAAQAAAAAAAAASABAAAQAAAAAAAAATABAAAQAAAAAAAAAUABAAAQAAAAAAAAAVABAAAQAAAAAAAAAWABAAAQAAAAAAAAAXABAAAQAAAAAAAAAYABAAAQAAAAAAAAAZABAAAQAAAAAAAAAaABAAAQAAAAAAAAAbABAAAQAAAAAAAAAcABAAAQAAAAAAAAAdABAAAQAAAAAAAAATAA8AAQAAAAAAAAATAA4AAQAAAAAAAAAUAA4AAQAAAAAAAAAVAA4AAQAAAAAAAAAWAA4AAQAAAAAAAAAWAA8AAQAAAAAAAAAeABAAAQAAAAAAAAAfABAAAQAAAAAAAAAgABAAAQAAAAAAAAAhABAAAQAAAAAAAAAiABAAAQAAAAAAAAAjABAAAQAAAAAAAAAkABAAAQAAAAAAAAAlABAAAQAAAAAAAAAmABAAAQAAAAAAAAAnABAAAQAAAAAAAAAoABAAAQAAAAAAAAApABAAAQAAAAAAAAAqABAAAQAAAAAAAAArABAAAQAAAAAAAAAsABAAAQAAAAAAAAAeAA8AAQAAAAAAAAAeAA4AAQAAAAAAAAAeAA0AAQAAAAAAAAAfAA0AAQAAAAAAAAAgAA0AAQAAAAAAAAAgAA4AAQAAAAAAAAAgAA8AAQAAAAAAAAAlAA8AAQAAAAAAAAAlAA4AAQAAAAAAAAAlAA0AAQAAAAAAAAAmAA0AAQAAAAAAAAAnAA0AAQAAAAAAAAAnAA4AAQAAAAAAAAAnAA8AAQAAAAAAAAD//xAAAQAAAAAAAAD+/xAAAQAAAAAAAAD9/xAAAQAAAAAAAAD8/xAAAQAAAAAAAAD7/xAAAQAAAAAAAAD6/xAAAQAAAAAAAAD5/xAAAQAAAAAAAAARAA8AAQAAAAAAAAARAA4AAQAAAAAAAAAQAA4AAQAAAAAAAAAPAA4AAQAAAAAAAAAOAA4AAQAAAAAAAAAOAA8AAQAAAAAAAAAMAA8AAQAAAAAAAAAMAA4AAQAAAAAAAAALAA4AAQAAAAAAAAAKAA4AAQAAAAAAAAAJAA4AAQAAAAAAAAAJAA8AAQAAAAAAAAAtABAAAQAAAAAAAAAuABAAAQAAAAAAAAAvABAAAQAAAAAAAAAwABAAAQAAAAAAAAAxABAAAQAAAAAAAAAyABAAAQAAAAAAAAAzABAAAQAAAAAAAAA0ABAAAQAAAAAAAAA1ABAAAQAAAAAAAAA2ABAAAQAAAAAAAAA3ABAAAQAAAAAAAAA4ABAAAQAAAAAAAAA5ABAAAQAAAAAAAAA6ABAAAQAAAAAAAAA7ABAAAQAAAAAAAAA8ABAAAQAAAAAAAAA9ABAAAQAAAAAAAAAyAA8AAQAAAAAAAAAyAA4AAQAAAAAAAAAzAA4AAQAAAAAAAAA0AA4AAQAAAAAAAAA1AA4AAQAAAAAAAAA1AA8AAQAAAAAAAAA7AA8AAQAAAAAAAAA7AA4AAQAAAAAAAAA7AA0AAQAAAAAAAAA8AA0AAQAAAAAAAAA9AA0AAQAAAAAAAAA+AA0AAQAAAAAAAAA/AA0AAQAAAAAAAABAAA0AAQAAAAAAAABAAA4AAQAAAAAAAABAAA8AAQAAAAAAAABAABAAAQAAAAAAAAA+ABAAAQAAAAAAAAA/ABAAAQAAAAAAAABBABAAAQAAAAAAAABCABAAAQAAAAAAAABDABAAAQAAAAAAAABEABAAAQAAAAAAAABFABAAAQAAAAAAAABGAAwAAQAAAAAAAABHAAwAAQAAAAAAAABIAAwAAQAAAAAAAABJAAwAAQAAAAAAAABKAAwAAQAAAAAAAABLAAwAAQAAAAAAAABGABAAAQAAAAAAAABHABAAAQAAAAAAAABIABAAAQAAAAAAAABJABAAAQAAAAAAAABKABAAAQAAAAAAAABLABAAAQAAAAAAAABLAA0AAQAAAAAAAABLAA4AAQAAAAAAAABLAA8AAQAAAAAAAAA=")
+use_kinematic_bodies = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="HUD" instance=ExtResource("5_tu1n1")]
+offset_right = 397.0
+offset_bottom = 24.0
+max_value = 10000.0
+value = 10000.0
+
+[node name="Transformation" parent="HUD" instance=ExtResource("6_fnm3g")]
+z_index = 3
+
+[node name="AffectableBlocks" parent="." instance=ExtResource("7_ce001")]
+position = Vector2(2256, 464)
+
+[node name="AffectableBlocks2" parent="." instance=ExtResource("7_ce001")]
+position = Vector2(2256, 496)
+
+[node name="AffectableBlocks3" parent="." instance=ExtResource("7_ce001")]
+position = Vector2(2256, 432)
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_ajdvk")]
+
+[node name="ChokeZone" parent="." instance=ExtResource("10_tsmrr")]
+position = Vector2(904, 711)
+scale = Vector2(250, 2)
+
+[node name="ChokeZone2" parent="." instance=ExtResource("10_tsmrr")]
+position = Vector2(-1277, -79)
+scale = Vector2(2, 80)
+
+[node name="ChokeZone3" parent="." instance=ExtResource("10_tsmrr")]
+position = Vector2(3254, -71)
+scale = Vector2(2, 80)
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXTransform" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXUI" type="AudioStreamPlayer" parent="."]

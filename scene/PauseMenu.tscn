@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://quhukba6q1eq"]
+[gd_scene load_steps=9 format=3 uid="uid://quhukba6q1eq"]
 
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="1_bb2s7"]
 [ext_resource type="Texture2D" uid="uid://qe4bnip44vjf" path="res://assets/UI/button_continue_base.png" id="2_i7yux"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://if4marynaum5" path="res://assets/UI/button_restart_hover.png" id="5_t5822"]
 [ext_resource type="Texture2D" uid="uid://7aviagoaxj2p" path="res://assets/UI/button_menu_base.png" id="6_sr11f"]
 [ext_resource type="Texture2D" uid="uid://c7m2wusu3e8bp" path="res://assets/UI/button_menu_hover.png" id="7_vks1d"]
+[ext_resource type="AudioStream" uid="uid://dg88swbqh1x87" path="res://assets/sounds/click4.wav" id="8_l4iw0"]
 
 [node name="PauseCanvas" type="CanvasLayer"]
 
@@ -70,6 +71,10 @@ texture_hover = ExtResource("5_t5822")
 layout_mode = 2
 texture_normal = ExtResource("6_sr11f")
 texture_hover = ExtResource("7_vks1d")
+
+[node name="SFX" type="AudioStreamPlayer" parent="PauseMenu"]
+stream = ExtResource("8_l4iw0")
+volume_db = 20.697
 
 [connection signal="pressed" from="PauseMenu/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="PauseMenu" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="PauseMenu/PanelContainer/MarginContainer/VBoxContainer/RestartButton" to="PauseMenu" method="_on_restart_button_pressed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://eedrvsmsvsip"]
+[gd_scene load_steps=11 format=4 uid="uid://eedrvsmsvsip"]
 
 [ext_resource type="Texture2D" uid="uid://dm5t24fwrogkb" path="res://assets/backgrounds/Space Background1.png" id="1_gds8x"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="1_oa4jm"]
 [ext_resource type="PackedScene" uid="uid://bf72mxgxlcy2l" path="res://scene/Chromatomato.tscn" id="1_wlkej"]
 [ext_resource type="PackedScene" uid="uid://3ql7l7bw4v8b" path="res://scene/ChromaCrystal.tscn" id="2_pj1on"]
 [ext_resource type="PackedScene" uid="uid://cwmspki617ebq" path="res://scene/BasicTiles.tscn" id="3_q2vpo"]
@@ -8,8 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://quhukba6q1eq" path="res://scene/PauseMenu.tscn" id="5_cpv7d"]
 [ext_resource type="PackedScene" uid="uid://w0lyqn73jwwi" path="res://scene/Player.tscn" id="6_mck61"]
 [ext_resource type="PackedScene" uid="uid://cit8wd5jyjpxv" path="res://scene/Transformation.tscn" id="6_x88w1"]
+[ext_resource type="PackedScene" uid="uid://3d3ed3f3iugi" path="res://scene/ChokeZone.tscn" id="10_fmcb0"]
 
 [node name="Level0" type="Node2D"]
+script = ExtResource("1_oa4jm")
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -31,9 +34,8 @@ use_kinematic_bodies = true
 top_level = false
 z_index = 13
 z_as_relative = false
-position = Vector2(-173, 350)
+position = Vector2(-190, 449)
 scale = Vector2(2, 2)
-health = 100000
 
 [node name="Chromatomato" parent="." instance=ExtResource("1_wlkej")]
 z_index = 1
@@ -60,3 +62,22 @@ z_as_relative = false
 transform_cost = 100
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_cpv7d")]
+
+[node name="ChokeZone" parent="." instance=ExtResource("10_fmcb0")]
+position = Vector2(453, 950)
+scale = Vector2(200, 2)
+
+[node name="ChokeZone2" parent="." instance=ExtResource("10_fmcb0")]
+position = Vector2(-1541, -86)
+scale = Vector2(2, 100)
+
+[node name="ChokeZone3" parent="." instance=ExtResource("10_fmcb0")]
+position = Vector2(2445, -48)
+scale = Vector2(2, 100)
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+
+[node name="SFXTransform" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXUI" type="AudioStreamPlayer" parent="."]

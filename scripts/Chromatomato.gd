@@ -24,4 +24,5 @@ func _on_chromatomato_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group("player") and !self.is_collected:
 		self.is_collected = true
 		SignalBus.tomato_pickup.emit()
+		SignalBus.play_sound.emit("Fruit collect 1.wav")
 		self.visible = false

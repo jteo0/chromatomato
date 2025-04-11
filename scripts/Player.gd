@@ -14,11 +14,15 @@ extends CharacterBody2D
 @onready var spawn_air = preload("res://scene/FrozenAir.tscn")
 @onready var basic_tiles: TileMapLayer = get_parent().get_node("BasicTiles")
 @onready var healthbar = get_parent().get_node("HUD/HealthBar")
+@onready var start_delay_timer = $StartDelayTimer
 
 @onready var area_up = $CheckUp
 @onready var area_down = $CheckDown
 @onready var area_right = $CheckRight
 @onready var area_left = $CheckLeft
+
+var footstep_cooldown: float = 0.0
+var footstep_delay: float = 0.37
 
 var state: SignalBus.States = SignalBus.States.IDLE
 var form: SignalBus.Forms = SignalBus.Forms.FORM_WHITE
@@ -35,6 +39,8 @@ var bodies_down: Array[Node2D] = []
 var bodies_left: Array[Node2D] = []
 var bodies_right: Array[Node2D] = []
 
+var can_move: bool = false
+
 func _ready() -> void:
 	await healthbar.ready
 	healthbar.init_health(health)
@@ -43,15 +49,15 @@ func _ready() -> void:
 	
 	SignalBus.tomato_pickup.connect(add_tomato)
 	SignalBus.finish_transformation.connect(set_state_form)
+	
+	start_delay_timer.start()
+	await start_delay_timer.timeout
+	can_move = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	SignalBus.hp_down.emit(env_damage)
 
 func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
-	@warning_ignore("unused_variable")
-	var previous_state = state
-	@warning_ignore("unused_variable")
-	var previous_form = form
 	state = new_state
 	form = new_form
 	
@@ -65,7 +71,7 @@ func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
 					walk_speed = 200
 					player_sprite.play("idle_white")
 				SignalBus.Forms.FORM_RED:
-					jump_speed = -400
+					jump_speed = -420
 					walk_speed = 250
 					player_sprite.play("idle_red")
 				SignalBus.Forms.FORM_BLUE:
@@ -84,7 +90,7 @@ func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
 					walk_speed = 200
 					player_sprite.play("run_white")
 				SignalBus.Forms.FORM_RED:
-					jump_speed = -400
+					jump_speed = -420
 					walk_speed = 250
 					player_sprite.play("run_red")
 				SignalBus.Forms.FORM_BLUE:
@@ -103,7 +109,7 @@ func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
 					walk_speed = 200
 					player_sprite.play("jump_white")
 				SignalBus.Forms.FORM_RED:
-					jump_speed = -400
+					jump_speed = -420
 					walk_speed = 250
 					player_sprite.play("jump_red")
 				SignalBus.Forms.FORM_BLUE:
@@ -122,7 +128,7 @@ func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
 					walk_speed = 200
 					player_sprite.play("interact_up_white")
 				SignalBus.Forms.FORM_RED:
-					jump_speed = -400
+					jump_speed = -420
 					walk_speed = 250
 					player_sprite.play("interact_up_red")
 				SignalBus.Forms.FORM_BLUE:
@@ -141,7 +147,7 @@ func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
 					walk_speed = 200
 					player_sprite.play("interact_right_white")
 				SignalBus.Forms.FORM_RED:
-					jump_speed = -400
+					jump_speed = -420
 					walk_speed = 250
 					player_sprite.play("interact_right_red")
 				SignalBus.Forms.FORM_BLUE:
@@ -154,6 +160,7 @@ func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
 					player_sprite.play("interact_right_yellow")
 
 func _physics_process(delta):
+	if !can_move: return
 	velocity.y += delta * gravity
 	
 	var direction = Input.get_axis("move_left", "move_right")
@@ -165,6 +172,17 @@ func _physics_process(delta):
 		player_sprite.flip_h = false
 	elif direction <= -1:
 		player_sprite.flip_h = true
+	
+	if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
+		if is_on_floor():
+			if footstep_cooldown <= 0:
+				SignalBus.play_sound.emit("footsteps-tap-short.ogg")
+				footstep_cooldown = footstep_delay  # Reset cooldown
+			else:
+				footstep_cooldown -= delta  # Decrement cooldown
+		velocity.x = walk_speed * (Input.get_action_strength("move_right") - Input.get_action_strength("move_left"))
+	else:
+		footstep_cooldown = 0
 		
 	handle_movement()
 	
@@ -174,26 +192,30 @@ func handle_movement():
 	velocity.x = 0
 	if Input.is_action_pressed("move_right"):
 		if is_on_floor():
+			#SignalBus.play_sound.emit("footsteps-tap-short.ogg")
 			set_state_form(SignalBus.States.RUN, form)
 		elif !is_on_floor():
 			pass
 		velocity.x += walk_speed
-		
+	
 	if Input.is_action_pressed("move_left"):
 		if is_on_floor():
+			#SignalBus.play_sound.emit("footsteps-tap-short.ogg")
 			set_state_form(SignalBus.States.RUN, form)
 		elif !is_on_floor():
 			pass
 		velocity.x -= walk_speed
-		
+			
 	if Input.is_action_just_released("move_right") or Input.is_action_just_released("move_left") and state == SignalBus.States.RUN:
 		set_state_form(SignalBus.States.IDLE, form)
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		SignalBus.play_sound.emit("jump_07.wav")
 		set_state_form(SignalBus.States.JUMP, form)
 		velocity.y += jump_speed
 		
 	if Input.is_action_just_pressed("interact"):
+		SignalBus.play_sound.emit("interact.mp3")
 		match form:
 			SignalBus.Forms.FORM_WHITE:
 				pass
@@ -279,21 +301,26 @@ func break_object():
 			tween.tween_property(target, "global_position", original_pos - Vector2(5, 0), 0.05)
 			tween.tween_property(target, "global_position", original_pos, 0.05)
 			tween.tween_callback(Callable(target, "queue_free"))
-	
+			
+			await tween.finished
+			SignalBus.play_sound.emit("Block Break 1.wav")
 		else:
 			SignalBus.break_me.emit(target)
 
-func push_object():	
+func push_object(push_force := 1.0):  # Adding a default push_force parameter
 	var dir = get_mouse_cardinal_direction()
-	var offset = dir * 64
+	var offset = dir * 64 * push_force  # Scale the push distance by push_force
+	var player_offset = -dir * 64 * push_force  # Opposite direction for player
 	var targets: Array[Node2D] = []
-
+	
 	match dir:
 		Vector2.UP: targets = bodies_up
 		Vector2.DOWN: targets = bodies_down
 		Vector2.LEFT: targets = bodies_left
 		Vector2.RIGHT: targets = bodies_right
-
+	
+	var pushed_something = false  # Track if we actually pushed anything
+	
 	for target in targets:
 		if target is StaticBody2D:
 			var new_pos = target.global_position + offset
@@ -310,8 +337,27 @@ func push_object():
 				var tween = get_tree().create_tween()
 				tween.tween_property(target, "global_position", new_pos, 0.3)
 				tween.set_ease(Tween.EASE_IN_OUT)
+				pushed_something = true
 		else:
 			SignalBus.push_me.emit(target, dir)
+			pushed_something = true
+	
+	# Only push player if we successfully pushed an object
+	if pushed_something:
+		var player_new_pos = global_position + player_offset
+		
+		var space_state = get_world_2d().direct_space_state
+		var params = PhysicsRayQueryParameters2D.create(
+			global_position,
+			player_new_pos,
+			collision_mask
+		)
+		var hit = space_state.intersect_ray(params)
+		
+		if not hit:
+			var tween = get_tree().create_tween()
+			tween.tween_property(self, "global_position", player_new_pos, 0.3)
+			tween.set_ease(Tween.EASE_IN_OUT)
 
 func _on_check_up_body_entered(body: Node2D) -> void:
 	exists_up = true

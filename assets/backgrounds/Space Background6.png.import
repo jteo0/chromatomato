@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkubyd2l3scet"
-path="res://.godot/imported/tilebox.png-d893ce8ef75b71cdccaf624c336cc5ed.ctex"
+uid="uid://b10nyrqa3tnw1"
+path="res://.godot/imported/Space Background6.png-e5e05104a9f4c0d04749e1dcea310673.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/tilebox.png"
-dest_files=["res://.godot/imported/tilebox.png-d893ce8ef75b71cdccaf624c336cc5ed.ctex"]
+source_file="res://assets/backgrounds/Space Background6.png"
+dest_files=["res://.godot/imported/Space Background6.png-e5e05104a9f4c0d04749e1dcea310673.ctex"]
 
 [params]
 

@@ -8,6 +8,8 @@ func _ready():
 	$Control.modulate.a = 0
 	$Control.scale = Vector2(0.5, 0.5)
 	
+	SignalBus.play_sound.emit("win.mp3")
+	
 	var tween_in = create_tween().set_trans(Tween.TRANS_BACK)
 	tween_in.tween_property($Control, "modulate:a", 1, 0.5)
 	tween_in.parallel().tween_property($Control, "scale", Vector2.ONE, 0.7)

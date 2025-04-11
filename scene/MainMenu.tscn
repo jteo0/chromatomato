@@ -1,15 +1,24 @@
-[gd_scene load_steps=84 format=3 uid="uid://dgp0kbar5fk1j"]
+[gd_scene load_steps=87 format=3 uid="uid://dgp0kbar5fk1j"]
 
-[ext_resource type="Texture2D" uid="uid://cgpd5nb330w3p" path="res://assets/backgrounds/bg.png" id="1_8v0mo"]
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_uxks8"]
+[ext_resource type="Texture2D" uid="uid://c27844b54vh03" path="res://assets/backgrounds/Space Background9.png" id="2_a036y"]
 [ext_resource type="Texture2D" uid="uid://ciy6iafvbsp8w" path="res://assets/UI/title.png" id="2_gxa1r"]
 [ext_resource type="Texture2D" uid="uid://c1j3000t1bcqk" path="res://assets/UI/button_start_base.png" id="2_ndna3"]
 [ext_resource type="Texture2D" uid="uid://cx0enb4nth84b" path="res://assets/UI/button_exit_base.png" id="4_lqmip"]
+[ext_resource type="Texture2D" uid="uid://11o2xwk48fsp" path="res://assets/UI/title_2.png" id="4_rn1s3"]
 [ext_resource type="Texture2D" uid="uid://b0xp7cs1nuro1" path="res://assets/objects/chromatomato_rainbow-Sheet.png" id="4_ttx3d"]
 [ext_resource type="Texture2D" uid="uid://c04lqk1qvnoqt" path="res://assets/UI/button_start_hover.png" id="4_ysthi"]
 [ext_resource type="Texture2D" uid="uid://c0d0enc5vx7di" path="res://assets/UI/button_controls_base.png" id="5_wnb5m"]
 [ext_resource type="Texture2D" uid="uid://c66t7vsqh62n1" path="res://assets/UI/button_controls_hover.png" id="6_7lqmo"]
 [ext_resource type="Texture2D" uid="uid://bnenla2gbdcee" path="res://assets/UI/button_exit_hover.png" id="8_iblvc"]
+[ext_resource type="AudioStream" uid="uid://dg88swbqh1x87" path="res://assets/sounds/click4.wav" id="11_nkuyw"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_xsla1"]
+frames = 2
+frame_0/texture = ExtResource("2_gxa1r")
+frame_0/duration = 0.4
+frame_1/texture = ExtResource("4_rn1s3")
+frame_1/duration = 0.4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_be1o6"]
 atlas = ExtResource("4_ttx3d")
@@ -539,7 +548,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_8v0mo")
+texture = ExtResource("2_a036y")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -555,7 +564,7 @@ theme_override_constants/separation = 223
 
 [node name="Title" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_gxa1r")
+texture = SubResource("AnimatedTexture_xsla1")
 stretch_mode = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer"]
@@ -582,6 +591,10 @@ texture_hover = ExtResource("4_ysthi")
 layout_mode = 2
 texture_normal = ExtResource("4_lqmip")
 texture_hover = ExtResource("8_iblvc")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_nkuyw")
+volume_db = 20.697
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ControlsMenuButton" to="." method="_on_controls_menu_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/StartMenuButton" to="." method="_on_start_menu_button_pressed"]

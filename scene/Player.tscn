@@ -631,6 +631,9 @@ shape = SubResource("RectangleShape2D_f7krn")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(78, -57)
 
+[node name="StartDelayTimer" type="Timer" parent="."]
+wait_time = 3.5
+
 [connection signal="body_entered" from="CheckUp" to="." method="_on_check_up_body_entered"]
 [connection signal="body_exited" from="CheckUp" to="." method="_on_check_up_body_exited"]
 [connection signal="body_entered" from="CheckDown" to="." method="_on_check_down_body_entered"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://vruh8gh5jr2y"
+path="res://.godot/imported/Funny Bit.ogg-1814b5b2a6ed3fe7de3c77e82dc77898.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/bgm/Funny Bit.ogg"
+dest_files=["res://.godot/imported/Funny Bit.ogg-1814b5b2a6ed3fe7de3c77e82dc77898.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,12 +1,16 @@
 extends Control
 
+@onready var sfx = $SFX
+
 func _ready() -> void:
 	visible = false
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("escape") and !PauseManager.pause_menu:
+		sfx.play()
 		pause()
 	elif Input.is_action_just_pressed("escape") and PauseManager.pause_menu:
+		sfx.play()
 		resume()
 
 func resume():
@@ -22,14 +26,17 @@ func pause():
 	visible = true
 
 func _on_continue_button_pressed() -> void:
+	sfx.play()
 	resume()
 
 func _on_restart_button_pressed() -> void:
+	sfx.play()
 	resume()
 	var current_scene = get_tree().current_scene
 	var scene_path = current_scene.scene_file_path
 	get_tree().change_scene_to_file(scene_path)
 
 func _on_menu_button_pressed() -> void:
+	sfx.play()
 	resume()
 	get_tree().change_scene_to_file("res://scene/MainMenu.tscn")

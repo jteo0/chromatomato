@@ -25,6 +25,7 @@ func _connect_signal():
 		call_deferred("_on_dead")  # Fallback
 
 func _start_death_sequence():
+	SignalBus.play_sound.emit("lose.wav")
 	$Control.modulate.a = 0
 	$Control.scale = Vector2(0.5, 0.5)
 	_on_dead()
@@ -42,6 +43,8 @@ func _on_dead():
 	tween = create_tween()
 	tween.tween_property($Control, "modulate:a", 0, 0.3)
 	await tween.finished
+	
+	SignalBus.has_respawned = true
 	
 	if previous_scene and ResourceLoader.exists(previous_scene):
 		get_tree().change_scene_to_file(previous_scene)

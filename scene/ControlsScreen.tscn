@@ -1,8 +1,8 @@
-[gd_scene load_steps=39 format=3 uid="uid://b8gjj2eof1ope"]
+[gd_scene load_steps=40 format=3 uid="uid://b8gjj2eof1ope"]
 
 [ext_resource type="Script" path="res://scripts/Controls.gd" id="1_53ulw"]
-[ext_resource type="Texture2D" uid="uid://cgpd5nb330w3p" path="res://assets/backgrounds/bg.png" id="1_oxufv"]
 [ext_resource type="Texture2D" uid="uid://bumfydjwcg38w" path="res://assets/player/player_2_walk.png" id="2_pi36m"]
+[ext_resource type="Texture2D" uid="uid://xw14ar35855d" path="res://assets/backgrounds/Space Background3.png" id="2_rx1qa"]
 [ext_resource type="Texture2D" uid="uid://dt007uu5g6ybb" path="res://assets/UI/messy_arrow_left.png" id="3_5l6bj"]
 [ext_resource type="Texture2D" uid="uid://da7ur8n3m5plu" path="res://assets/player/player_2_jump.png" id="3_5xkex"]
 [ext_resource type="Texture2D" uid="uid://dcdcy7qt3hlma" path="res://assets/UI/messy_arrow_right_flipped.png" id="4_0qor2"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ervgrfg8stfj" path="res://assets/player/player_2_red.png" id="14_r5h0w"]
 [ext_resource type="Texture2D" uid="uid://3e71ywrsfyqt" path="res://assets/UI/E.png" id="14_rf1g6"]
 [ext_resource type="Texture2D" uid="uid://dnvr3wt7pj5gv" path="res://assets/player/player_2_yellow.png" id="15_4fsds"]
+[ext_resource type="AudioStream" uid="uid://dg88swbqh1x87" path="res://assets/sounds/click4.wav" id="18_c37rh"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_5pr8p"]
 frames = 2
@@ -28,9 +29,9 @@ frame_1/duration = 0.5
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_7rj8w"]
 frames = 2
 frame_0/texture = ExtResource("9_joahr")
-frame_0/duration = 0.5
+frame_0/duration = 0.4
 frame_1/texture = ExtResource("10_n8uoo")
-frame_1/duration = 0.5
+frame_1/duration = 0.4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lv2ka"]
 atlas = ExtResource("2_pi36m")
@@ -185,7 +186,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_oxufv")
+texture = ExtResource("2_rx1qa")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -268,5 +269,9 @@ position = Vector2(836, 185)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_s0lbd")
 frame_progress = 0.773943
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_c37rh")
+volume_db = 20.697
 
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

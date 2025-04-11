@@ -1,11 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctg855rpu4r33"]
+[gd_scene load_steps=28 format=3 uid="uid://ctg855rpu4r33"]
 
 [ext_resource type="Script" path="res://scripts/StageSelect.gd" id="1_x5oji"]
-[ext_resource type="Texture2D" uid="uid://cgpd5nb330w3p" path="res://assets/backgrounds/bg.png" id="2_85sk4"]
+[ext_resource type="Texture2D" uid="uid://de78eokvj7gw2" path="res://assets/backgrounds/Space Background2.png" id="2_5r0ds"]
 [ext_resource type="Texture2D" uid="uid://b2h4ey5rigq7l" path="res://assets/UI/stageselect1_1.png" id="3_fkt1l"]
+[ext_resource type="Texture2D" uid="uid://dt007uu5g6ybb" path="res://assets/UI/messy_arrow_left.png" id="3_fveva"]
 [ext_resource type="Texture2D" uid="uid://cirfjd0w7gire" path="res://assets/UI/stageselect1_1words.png" id="3_rthec"]
+[ext_resource type="Texture2D" uid="uid://dcdcy7qt3hlma" path="res://assets/UI/messy_arrow_right_flipped.png" id="4_88c2p"]
 [ext_resource type="Texture2D" uid="uid://dhp1mqdjtrn07" path="res://assets/UI/stageselect1_words.png" id="4_hkd8b"]
 [ext_resource type="Texture2D" uid="uid://4mtiq422pmpt" path="res://assets/UI/stageselect2_1.png" id="4_wu1mg"]
+[ext_resource type="Texture2D" uid="uid://cu5ocsiisdpaa" path="res://assets/UI/stageselect2_words1-sheet.png" id="7_8jqft"]
+[ext_resource type="Texture2D" uid="uid://ddlmmnin4ysej" path="res://assets/UI/stageselect2_2.png" id="7_rtcr2"]
+[ext_resource type="AudioStream" uid="uid://dg88swbqh1x87" path="res://assets/sounds/click4.wav" id="7_ychp2"]
+[ext_resource type="Texture2D" uid="uid://c10rqnstx8855" path="res://assets/UI/stageselect2_words2-sheet.png" id="8_5qbct"]
+[ext_resource type="Texture2D" uid="uid://bnw6jy8ftcu7n" path="res://assets/UI/stageselect3_1.png" id="8_hi0q7"]
+[ext_resource type="Texture2D" uid="uid://mrcwigrmlj1j" path="res://assets/UI/stageselect3_2.png" id="9_07asa"]
+[ext_resource type="Texture2D" uid="uid://rx5pa4trwulx" path="res://assets/UI/stageselect3_words1.png" id="9_iaum1"]
+[ext_resource type="Texture2D" uid="uid://bcv3mhf66am35" path="res://assets/UI/stageselect1_2.png" id="10_nbkrn"]
+[ext_resource type="Texture2D" uid="uid://occhpwu3yju3" path="res://assets/UI/stageselect3_words2.png" id="11_ddjgb"]
+[ext_resource type="Texture2D" uid="uid://b72o36qma4e5t" path="res://assets/UI/stageselect4_2words.png" id="12_o34q0"]
+[ext_resource type="Texture2D" uid="uid://cw4hx7ckh6ccp" path="res://assets/UI/stageselect4_1words.png" id="15_c4214"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_hndl3"]
+frames = 2
+frame_0/texture = ExtResource("3_fveva")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("4_88c2p")
+frame_1/duration = 0.5
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_vrl51"]
 frames = 2
@@ -13,6 +33,45 @@ frame_0/texture = ExtResource("3_rthec")
 frame_0/duration = 0.2
 frame_1/texture = ExtResource("4_hkd8b")
 frame_1/duration = 0.2
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_jeq82"]
+frames = 2
+frame_0/texture = ExtResource("7_8jqft")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("8_5qbct")
+frame_1/duration = 0.2
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_i7345"]
+frames = 2
+frame_0/texture = ExtResource("4_wu1mg")
+frame_1/texture = ExtResource("7_rtcr2")
+frame_1/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_dsxml"]
+frames = 2
+frame_0/texture = ExtResource("9_iaum1")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("11_ddjgb")
+frame_1/duration = 0.2
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_cv4kt"]
+frames = 2
+frame_0/texture = ExtResource("8_hi0q7")
+frame_1/texture = ExtResource("9_07asa")
+frame_1/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_o06h7"]
+frames = 2
+frame_0/texture = ExtResource("15_c4214")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("12_o34q0")
+frame_1/duration = 0.2
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_tss6s"]
+frames = 2
+frame_0/texture = ExtResource("3_fkt1l")
+frame_1/texture = ExtResource("10_nbkrn")
+frame_1/duration = 1.0
 
 [node name="StageSelect" type="Control"]
 layout_mode = 3
@@ -30,7 +89,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_85sk4")
+texture = ExtResource("2_5r0ds")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TextureRect"]
+
+[node name="BackButton" type="TextureButton" parent="TextureRect/CanvasLayer"]
+z_index = 21
+anchors_preset = -1
+anchor_right = 0.068
+anchor_bottom = 0.11
+offset_right = 3.71999
+offset_bottom = 6.59999
+texture_normal = SubResource("AnimatedTexture_hndl3")
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1
@@ -41,40 +111,54 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0646965, 0.0646965, 0.0646965, 0.168627)
 
-[node name="CongratsBox" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.5
+offset_top = -55.5
+offset_right = 296.5
+offset_bottom = 55.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Congratulations" type="RichTextLabel" parent="CongratsBox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_constants/separation = 34
 
-[node name="TimeLabel" type="RichTextLabel" parent="CongratsBox"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -296.5
-offset_right = 296.5
-offset_bottom = 103.0
-grow_horizontal = 2
-
-[node name="Stage0" type="TextureButton" parent="VBoxContainer"]
+[node name="Stage0" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("3_rthec")
 texture_hover = SubResource("AnimatedTexture_vrl51")
 texture_disabled = ExtResource("3_fkt1l")
 
-[node name="Stage1" type="TextureButton" parent="VBoxContainer"]
+[node name="Stage1" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-texture_disabled = ExtResource("4_wu1mg")
+texture_normal = ExtResource("7_8jqft")
+texture_hover = SubResource("AnimatedTexture_jeq82")
+texture_disabled = SubResource("AnimatedTexture_i7345")
 
-[connection signal="pressed" from="VBoxContainer/Stage0" to="." method="_on_stage_0_pressed"]
+[node name="Stage2" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("9_iaum1")
+texture_hover = SubResource("AnimatedTexture_dsxml")
+texture_disabled = SubResource("AnimatedTexture_cv4kt")
+
+[node name="Stage3" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("12_o34q0")
+texture_hover = SubResource("AnimatedTexture_o06h7")
+texture_disabled = SubResource("AnimatedTexture_tss6s")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ychp2")
+volume_db = 20.697
+
+[connection signal="pressed" from="TextureRect/CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Stage0" to="." method="_on_stage_0_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Stage1" to="." method="_on_stage_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Stage2" to="." method="_on_stage_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Stage3" to="." method="_on_stage_3_pressed"]
