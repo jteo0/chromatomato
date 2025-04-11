@@ -10,6 +10,7 @@ extends Node
 @onready var sfx_ui = $SFXUI
 
 func _ready():
+	SignalBus.level_playing = 2
 	var bgm = preload("res://assets/bgm/retro-gaming-248421.ogg")  
 	BgmManager.play_bgm(bgm)		
 	

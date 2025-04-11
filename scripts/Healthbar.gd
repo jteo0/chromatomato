@@ -9,12 +9,12 @@ var health: int = _get_default_health() : set = _set_health
 var is_active = false
 
 func _get_default_health() -> int:
-	if !Engine.is_editor_hint():  # Only run this logic in-game
+	if !Engine.is_editor_hint():
 		match SignalBus.level_playing:
-			0: return 2000
-			1: return 5000
-			2: return 5500
-			3: return 10000
+			0: return 5000
+			1: return 2500
+			2: return 4000
+			3: return 5000
 	return 5000
 	
 func _ready() -> void:
@@ -31,7 +31,11 @@ func _on_level_started():
 	SignalBus.repause.connect(pause_again)
 
 func _process(_delta: float) -> void:
-	print(health)
+	if SignalBus.in_transform:
+		env_damage = 2
+	else:
+		env_damage = 1
+	countdown(env_damage)
 
 func _set_health(new_health):
 	if not is_active: return

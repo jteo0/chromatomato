@@ -7,7 +7,6 @@ extends CharacterBody2D
 @export var freeze_cost = 1
 @export var break_cost = 1
 @export var charge_cost = 1
-@export var env_damage = 1
 
 @onready var player_sprite = $PlayerSprite
 @onready var default_collision = $DefaultCollision
@@ -55,7 +54,7 @@ func _ready() -> void:
 	can_move = true
 
 func _process(_delta: float) -> void:
-	SignalBus.hp_down.emit(env_damage)
+	pass
 
 func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
 	state = new_state
@@ -192,7 +191,6 @@ func handle_movement():
 	velocity.x = 0
 	if Input.is_action_pressed("move_right"):
 		if is_on_floor():
-			#SignalBus.play_sound.emit("footsteps-tap-short.ogg")
 			set_state_form(SignalBus.States.RUN, form)
 		elif !is_on_floor():
 			pass
@@ -200,7 +198,6 @@ func handle_movement():
 	
 	if Input.is_action_pressed("move_left"):
 		if is_on_floor():
-			#SignalBus.play_sound.emit("footsteps-tap-short.ogg")
 			set_state_form(SignalBus.States.RUN, form)
 		elif !is_on_floor():
 			pass
@@ -319,8 +316,6 @@ func push_object(push_force := 1.0):  # Adding a default push_force parameter
 		Vector2.LEFT: targets = bodies_left
 		Vector2.RIGHT: targets = bodies_right
 	
-	var pushed_something = false  # Track if we actually pushed anything
-	
 	for target in targets:
 		if target is StaticBody2D:
 			var new_pos = target.global_position + offset
@@ -337,27 +332,9 @@ func push_object(push_force := 1.0):  # Adding a default push_force parameter
 				var tween = get_tree().create_tween()
 				tween.tween_property(target, "global_position", new_pos, 0.3)
 				tween.set_ease(Tween.EASE_IN_OUT)
-				pushed_something = true
+		
 		else:
 			SignalBus.push_me.emit(target, dir)
-			pushed_something = true
-	
-	# Only push player if we successfully pushed an object
-	if pushed_something:
-		var player_new_pos = global_position + player_offset
-		
-		var space_state = get_world_2d().direct_space_state
-		var params = PhysicsRayQueryParameters2D.create(
-			global_position,
-			player_new_pos,
-			collision_mask
-		)
-		var hit = space_state.intersect_ray(params)
-		
-		if not hit:
-			var tween = get_tree().create_tween()
-			tween.tween_property(self, "global_position", player_new_pos, 0.3)
-			tween.set_ease(Tween.EASE_IN_OUT)
 
 func _on_check_up_body_entered(body: Node2D) -> void:
 	exists_up = true

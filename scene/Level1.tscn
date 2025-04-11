@@ -37,9 +37,9 @@ z_as_relative = false
 position = Vector2(-171, 449)
 scale = Vector2(2, 2)
 health = 100000
-freeze_cost = 5
+freeze_cost = 3
 break_cost = 5
-charge_cost = 5
+charge_cost = 3
 
 [node name="Chromatomato" parent="." instance=ExtResource("4_2emqg")]
 z_index = 1
