@@ -25,6 +25,7 @@ BgmManager="*res://BGMManager.gd"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/initial_position_type=0
 
 [editor_plugins]
 

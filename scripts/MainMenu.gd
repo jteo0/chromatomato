@@ -1,6 +1,6 @@
 extends Control
 
-@onready var tomato = $MarginContainer/VBoxContainer/AnimatedSprite2D
+@onready var tomato = $MarginContainer/VBoxContainer/Control/AnimatedSprite2D
 @onready var sfx = $SFX
 
 var bob_height: float = 15.0

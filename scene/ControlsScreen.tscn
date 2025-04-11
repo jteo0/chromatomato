@@ -26,13 +26,6 @@ frame_0/duration = 0.5
 frame_1/texture = ExtResource("4_0qor2")
 frame_1/duration = 0.5
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_7rj8w"]
-frames = 2
-frame_0/texture = ExtResource("9_joahr")
-frame_0/duration = 0.4
-frame_1/texture = ExtResource("10_n8uoo")
-frame_1/duration = 0.4
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_lv2ka"]
 atlas = ExtResource("2_pi36m")
 region = Rect2(0, 0, 32, 64)
@@ -170,6 +163,13 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_7rj8w"]
+frames = 2
+frame_0/texture = ExtResource("9_joahr")
+frame_0/duration = 0.4
+frame_1/texture = ExtResource("10_n8uoo")
+frame_1/duration = 0.4
+
 [node name="ControlsScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -206,69 +206,88 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 34
-theme_override_constants/margin_bottom = 149
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_constants/separation = 108
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="WalkingControl" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_gibe2")
-stretch_mode = 3
-
-[node name="WalkingControl2" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("5_6pd8g")
-stretch_mode = 3
-
-[node name="JumpControl" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("7_pk6th")
-stretch_mode = 3
-
-[node name="Mouse" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AnimatedTexture_7rj8w")
-stretch_mode = 3
-
-[node name="E" type="TextureRect" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("14_rf1g6")
-stretch_mode = 3
+theme_override_constants/separation = 64
 
-[node name="Walking" type="AnimatedSprite2D" parent="."]
-position = Vector2(161, 191)
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 250
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Walking" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/Control"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dd4g1")
 frame = 3
 frame_progress = 0.18736
 
-[node name="Jump" type="AnimatedSprite2D" parent="."]
-position = Vector2(426, 186)
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Jump" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/Control2"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hjjwj")
 frame = 1
 frame_progress = 0.583592
 
-[node name="Interact" type="AnimatedSprite2D" parent="."]
-position = Vector2(665, 187)
+[node name="Control3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Interact" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/Control3"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_uimk6")
 frame_progress = 0.0985388
 
-[node name="Transform" type="AnimatedSprite2D" parent="."]
-position = Vector2(836, 185)
+[node name="Control4" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Transform" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/Control4"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_s0lbd")
 frame_progress = 0.773943
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 126
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="WalkingControl" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_gibe2")
+stretch_mode = 3
+
+[node name="WalkingControl2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_6pd8g")
+stretch_mode = 3
+
+[node name="JumpControl" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("7_pk6th")
+stretch_mode = 3
+
+[node name="Mouse" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_7rj8w")
+stretch_mode = 3
+
+[node name="E" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_rf1g6")
+stretch_mode = 3
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_c37rh")

@@ -1,9 +1,9 @@
 extends Control
 
-@onready var walking = $Walking
-@onready var jumping = $Jump
-@onready var interacting = $Interact
-@onready var transforming = $Transform
+@onready var walking = $MarginContainer/VBoxContainer/HBoxContainer/Control/Walking
+@onready var jumping = $MarginContainer/VBoxContainer/HBoxContainer/Control2/Jump
+@onready var interacting = $MarginContainer/VBoxContainer/HBoxContainer/Control3/Interact
+@onready var transforming = $MarginContainer/VBoxContainer/HBoxContainer/Control4/Transform
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
