@@ -32,7 +32,6 @@ func _process(_delta: float) -> void:
 	else:
 		env_damage = 1
 	countdown(env_damage)
-	print(health)
 
 func _set_health(new_health):
 	var prev_health = health
