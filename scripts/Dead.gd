@@ -32,7 +32,6 @@ func _start_death_sequence():
 
 func _on_dead():
 	SignalBus.respawn_count += 1
-	print(SignalBus.respawn_count)
 	deadtext.text = "DEAD"
 	
 	var tween = create_tween()

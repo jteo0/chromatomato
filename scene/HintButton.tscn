@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq06us4gi00ce"]
+[gd_scene load_steps=5 format=3 uid="uid://bq06us4gi00ce"]
 
 [ext_resource type="Script" path="res://scripts/HintButton.gd" id="1_6h5c3"]
+[ext_resource type="FontFile" uid="uid://c2iirk14s2bs3" path="res://assets/fonts/WINKLE-REGULAR.OTF" id="2_3erag"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o4p2e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqc6k"]
 
 [node name="HintButton" type="Control"]
 z_index = 5
@@ -16,7 +21,10 @@ script = ExtResource("1_6h5c3")
 layout_mode = 1
 offset_right = 49.0
 offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("2_3erag")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o4p2e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cqc6k")
 text = "Hint?"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

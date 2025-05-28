@@ -17,7 +17,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if target_pos == Vector2.ZERO: return
 	
-	var target_screen_pos = (target_pos - _get_camera_rect().position * camera_zoom)
+	var target_screen_pos = (target_pos -  anchor.global_position * camera_zoom)
 	
 	if _target_on_screen():
 		global_position = target_pos
@@ -30,7 +30,7 @@ func _show_hint():
 	set_process(true)
 	
 func _get_camera_rect():
-	var pos = get_viewport().get_camera_2d().get_screen_center_position()
+	var pos = anchor.global_position
 	var screensize = get_viewport_rect().size / camera_zoom
 	
 	return Rect2(pos - screensize/2, screensize)
@@ -55,7 +55,7 @@ func _set_screen_position(screen_target_pos):
 	global_position = target_position
 
 func _rotate_to_target():
-	var current_position = get_viewport().get_camera_2d().get_screen_center_position()
+	var current_position = anchor.global_position
 	var direction = (target_pos - current_position).normalized()
 	
 	rotation = direction.angle()

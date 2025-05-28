@@ -44,6 +44,8 @@ func _ready() -> void:
 	SignalBus.dead.connect(_pause)
 	SignalBus.is_paused.connect(_pause)
 	SignalBus.unpause.connect(_resume)
+	SignalBus.is_paused_trans.connect(_pause)
+	SignalBus.unpause_trans.connect(_resume)
 	await healthbar.ready
 	healthbar.init_health(health)
 	

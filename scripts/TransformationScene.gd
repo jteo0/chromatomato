@@ -39,9 +39,11 @@ func _process(_delta: float) -> void:
 		if !SignalBus.in_transform:
 			SignalBus.hp_down.emit(transform_cost)
 			SignalBus.play_sound.emit("transform_start.mp3")
+			SignalBus.is_paused_trans.emit()
 			transformation_start()
 		else:
 			SignalBus.play_sound.emit("transform_finish.ogg")
+			SignalBus.unpause_trans.emit()
 			transformation_end()
 		
 func transformation_start():
