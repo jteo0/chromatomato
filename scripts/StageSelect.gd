@@ -23,21 +23,29 @@ func _process(_delta: float) -> void:
 func _on_stage_0_pressed() -> void:
 	sfx.play()
 	SignalBus.level_playing = 0
+	SignalBus.respawn_count = 0
+	SignalBus.skill_issue = false
 	get_tree().change_scene_to_file("res://scene/Level0.tscn")
 
 func _on_stage_1_pressed() -> void:
 	sfx.play()
 	SignalBus.level_playing = 1
+	SignalBus.respawn_count = 0
+	SignalBus.skill_issue = false
 	get_tree().change_scene_to_file("res://scene/Level1.tscn")
 
 func _on_stage_2_pressed() -> void:
 	sfx.play()
 	SignalBus.level_playing = 2
+	SignalBus.respawn_count = 0
+	SignalBus.skill_issue = false
 	get_tree().change_scene_to_file("res://scene/Level2.tscn")
 	
 func _on_stage_3_pressed() -> void:
 	sfx.play()
 	SignalBus.level_playing = 3
+	SignalBus.respawn_count = 0
+	SignalBus.skill_issue = false
 	get_tree().change_scene_to_file("res://scene/Level3.tscn")
 
 func unlock(level):

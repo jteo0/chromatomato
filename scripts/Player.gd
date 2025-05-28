@@ -41,6 +41,9 @@ var bodies_right: Array[Node2D] = []
 var can_move: bool = false
 
 func _ready() -> void:
+	SignalBus.dead.connect(_pause)
+	SignalBus.is_paused.connect(_pause)
+	SignalBus.unpause.connect(_resume)
 	await healthbar.ready
 	healthbar.init_health(health)
 	
@@ -52,9 +55,6 @@ func _ready() -> void:
 	start_delay_timer.start()
 	await start_delay_timer.timeout
 	can_move = true
-
-func _process(_delta: float) -> void:
-	pass
 
 func set_state_form(new_state: SignalBus.States, new_form: SignalBus.Forms):
 	state = new_state
@@ -176,9 +176,9 @@ func _physics_process(delta):
 		if is_on_floor():
 			if footstep_cooldown <= 0:
 				SignalBus.play_sound.emit("footsteps-tap-short.ogg")
-				footstep_cooldown = footstep_delay  # Reset cooldown
+				footstep_cooldown = footstep_delay
 			else:
-				footstep_cooldown -= delta  # Decrement cooldown
+				footstep_cooldown -= delta
 		velocity.x = walk_speed * (Input.get_action_strength("move_right") - Input.get_action_strength("move_left"))
 	else:
 		footstep_cooldown = 0
@@ -386,3 +386,10 @@ func freeze_object(dir: Vector2):
 	for target in targets:
 		if target.is_in_group("affectable_blocks"):
 			SignalBus.freeze_me.emit(target)
+
+func _pause():
+	set_physics_process(false)
+	
+
+func _resume():
+	set_physics_process(true)

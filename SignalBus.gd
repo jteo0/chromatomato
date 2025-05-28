@@ -7,12 +7,14 @@ signal hp_down(hp) # everytime hp goes down
 signal freeze_me(me)
 signal push_me(me, dir)
 signal break_me(me)
-signal turn_always() # transformation process = always
-signal turn_pausable() # transformation process = pausable
-signal repause()
 signal dead()
 signal has_started()
 signal play_sound(to_play)
+signal is_paused()
+signal unpause()
+signal level_start()
+signal show_hint()
+signal show_hint_button()
 
 enum Forms {FORM_BLUE, FORM_RED, FORM_YELLOW, FORM_WHITE}
 enum States {IDLE, RUN, JUMP, TRANSFORM, INTERACT_UP, INTERACT_RIGHT}
@@ -25,10 +27,15 @@ var in_transform: bool = false
 var unlocked_level = 0
 var level_playing = 0
 var has_respawned = false
+var current_stage = 1
+var in_pause = false
+var respawn_count = 0
+var skill_issue = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level_done.connect(unlock_levels)
+	show_hint_button.connect(_show_hint)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -51,3 +58,6 @@ func unlock_levels(level):
 				unlocked_level = 3
 		"3: Tower":
 			pass
+
+func _show_hint():
+	skill_issue = true

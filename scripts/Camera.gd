@@ -8,6 +8,9 @@ extends Node
 @onready var sfx = $SFX
 @onready var sfx_transform = $SFXTransform
 @onready var sfx_ui = $SFXUI
+@onready var crystal = $ChromaCrystal
+
+var is_respawn: bool = false
 
 func _ready():
 	SignalBus.level_playing = 2
@@ -15,20 +18,7 @@ func _ready():
 	BgmManager.play_bgm(bgm)		
 	
 	SignalBus.play_sound.connect(play_sound)
-	if not SignalBus.has_respawned:
-		play_intro_sequence()
-
-func play_intro_sequence():
-	var original_offset = camera.position
-	var level_end = $ChromaCrystal
-	camera.position = level_end.position - player.position
-	
-	await get_tree().create_timer(linger_time).timeout
-	
-	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(camera, "position", original_offset, move_duration)
-	
-	await tween.finished
+	_on_spawn()
 	SignalBus.has_started.emit()
 
 func _on_player_respawned():
@@ -53,3 +43,15 @@ func play_sound(sound_name: String):
 	else:
 		sfx.stream = sound_stream
 		sfx.play()
+
+func _on_spawn():
+	var original_position = camera.position
+	camera.global_position = crystal.global_position
+	await get_tree().create_timer(1.5).timeout
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(camera, "position", original_position, 3.0)
+	await tween.finished
+	SignalBus.level_start.emit()
+	
+func _has_respawned():
+	is_respawn = true

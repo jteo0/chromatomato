@@ -12,23 +12,19 @@ func _get_default_health() -> int:
 	if !Engine.is_editor_hint():
 		match SignalBus.level_playing:
 			0: return 5000
-			1: return 2500
+			1: return 5000
 			2: return 4000
 			3: return 5000
 	return 5000
 	
 func _ready() -> void:
-	SignalBus.has_started.connect(_on_level_started)
+	set_process(false)
+	
+	SignalBus.level_start.connect(_unpause)
 	SignalBus.level_done.connect(done)
-	if SignalBus.has_respawned:
-		_on_level_started()
-
-func _on_level_started():
-	is_active = true
 	SignalBus.hp_down.connect(countdown)
-	SignalBus.turn_pausable.connect(if_paused)
-	SignalBus.turn_always.connect(not_paused)
-	SignalBus.repause.connect(pause_again)
+	SignalBus.is_paused.connect(_pause)
+	SignalBus.unpause.connect(_unpause)
 
 func _process(_delta: float) -> void:
 	if SignalBus.in_transform:
@@ -36,9 +32,9 @@ func _process(_delta: float) -> void:
 	else:
 		env_damage = 1
 	countdown(env_damage)
+	print(health)
 
 func _set_health(new_health):
-	if not is_active: return
 	var prev_health = health
 	health = min(max_value, new_health)
 	value = health
@@ -53,38 +49,26 @@ func _set_health(new_health):
 	if health < prev_health:
 		timer.start()
 	else:
-		if taken_bar != null:
-			taken_bar.value = 50.0
-		else:
-			push_error("TakenHealthBar is missing or not a ProgressBar!")
+		taken_bar.value = health
 
 func init_health(_health):
+	max_value = _health
 	health = _health
-	max_value = health
 	value = health
 	taken_bar.max_value = health
 	taken_bar.value = health
 
 func _on_timer_timeout() -> void:
-	if not is_active: return
 	taken_bar.value = health
 
 func countdown(hp_down):
-	if not is_active: return
 	_set_health(health - hp_down)
-	
-func if_paused():
-	if not is_active: return
-	process_mode = Node.PROCESS_MODE_PAUSABLE
-
-func not_paused():
-	if not is_active: return
-	process_mode = Node.PROCESS_MODE_ALWAYS
-	
-func pause_again():
-	if not is_active: return
-	process_mode = Node.PROCESS_MODE_ALWAYS
-	get_tree().paused = true
 
 func done(_level):
 	queue_free()
+	
+func _pause():
+	set_process(false)
+	
+func _unpause():
+	set_process(true)

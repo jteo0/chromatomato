@@ -10,10 +10,6 @@ var level_done = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	crystal_sprite.play("default")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 	
 func count_frac():
 	var frac = taken_tomato / total_tomato

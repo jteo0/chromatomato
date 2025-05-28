@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://b70yw0vy3d23a"]
+[gd_scene load_steps=13 format=4 uid="uid://b70yw0vy3d23a"]
 
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="1_ebrvk"]
 [ext_resource type="PackedScene" uid="uid://w0lyqn73jwwi" path="res://scene/Player.tscn" id="2_2le6k"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cit8wd5jyjpxv" path="res://scene/Transformation.tscn" id="5_l7s64"]
 [ext_resource type="PackedScene" uid="uid://quhukba6q1eq" path="res://scene/PauseMenu.tscn" id="7_5omko"]
 [ext_resource type="PackedScene" uid="uid://2y8k52fa645v" path="res://scene/Healthbar.tscn" id="7_7fpql"]
+[ext_resource type="PackedScene" uid="uid://bq06us4gi00ce" path="res://scene/HintButton.tscn" id="9_7x58u"]
+[ext_resource type="PackedScene" uid="uid://cukf7m3sahy27" path="res://scene/TomatoIndicator.tscn" id="10_8gh1k"]
 [ext_resource type="PackedScene" uid="uid://3d3ed3f3iugi" path="res://scene/ChokeZone.tscn" id="10_ju05b"]
 
 [node name="Level1" type="Node2D"]
@@ -36,7 +38,7 @@ z_index = 13
 z_as_relative = false
 position = Vector2(-171, 449)
 scale = Vector2(2, 2)
-health = 100000
+health = 1500
 freeze_cost = 3
 break_cost = 5
 charge_cost = 3
@@ -61,13 +63,32 @@ level = "1: Jump"
 [node name="HealthBar" parent="HUD" instance=ExtResource("7_7fpql")]
 offset_right = 397.0
 offset_bottom = 24.0
-max_value = 10000.0
-value = 10000.0
+max_value = 1000.0
+value = 1000.0
 
 [node name="Transformation" parent="HUD" instance=ExtResource("5_l7s64")]
 z_index = 3
 z_as_relative = false
 transform_cost = 100
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 32
+
+[node name="HintButton" parent="HUD/MarginContainer" instance=ExtResource("9_7x58u")]
+layout_mode = 2
+
+[node name="TomatoIndicator" parent="HUD" instance=ExtResource("10_8gh1k")]
+target_pos = Vector2(493, 485)
+
+[node name="TomatoIndicator2" parent="HUD" instance=ExtResource("10_8gh1k")]
+target_pos = Vector2(1729, 27)
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_5omko")]
 

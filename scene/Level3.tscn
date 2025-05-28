@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://clc3mfun4odgw"]
+[gd_scene load_steps=14 format=4 uid="uid://clc3mfun4odgw"]
 
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="1_1a76f"]
 [ext_resource type="Texture2D" uid="uid://wmdqwbqtkk2e" path="res://assets/backgrounds/Space Background11.png" id="2_fnng1"]
@@ -8,9 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://cwmspki617ebq" path="res://scene/BasicTiles.tscn" id="6_055k4"]
 [ext_resource type="PackedScene" uid="uid://2y8k52fa645v" path="res://scene/Healthbar.tscn" id="7_yvqqw"]
 [ext_resource type="PackedScene" uid="uid://cit8wd5jyjpxv" path="res://scene/Transformation.tscn" id="8_dy2wo"]
+[ext_resource type="PackedScene" uid="uid://bq06us4gi00ce" path="res://scene/HintButton.tscn" id="9_cnrgl"]
 [ext_resource type="PackedScene" uid="uid://quhukba6q1eq" path="res://scene/PauseMenu.tscn" id="9_fxfpj"]
 [ext_resource type="PackedScene" uid="uid://3d3ed3f3iugi" path="res://scene/ChokeZone.tscn" id="10_3rpqk"]
 [ext_resource type="PackedScene" uid="uid://dbwur72oybimp" path="res://scene/AffectableBlocks.tscn" id="10_5jwdx"]
+[ext_resource type="PackedScene" uid="uid://cukf7m3sahy27" path="res://scene/TomatoIndicator.tscn" id="10_7udgb"]
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_1a76f")
@@ -32,6 +34,7 @@ z_index = 13
 z_as_relative = false
 position = Vector2(-298, 449)
 scale = Vector2(2, 2)
+health = 6000
 freeze_cost = 3
 break_cost = 5
 charge_cost = 3
@@ -73,6 +76,31 @@ value = 10000.0
 
 [node name="Transformation" parent="HUD" instance=ExtResource("8_dy2wo")]
 z_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 32
+
+[node name="HintButton" parent="HUD/MarginContainer" instance=ExtResource("9_cnrgl")]
+layout_mode = 2
+
+[node name="TomatoIndicator" parent="HUD" instance=ExtResource("10_7udgb")]
+target_pos = Vector2(433, 474)
+
+[node name="TomatoIndicator2" parent="HUD" instance=ExtResource("10_7udgb")]
+target_pos = Vector2(1591, 469)
+
+[node name="TomatoIndicator3" parent="HUD" instance=ExtResource("10_7udgb")]
+target_pos = Vector2(2255, -171)
+
+[node name="TomatoIndicator4" parent="HUD" instance=ExtResource("10_7udgb")]
+target_pos = Vector2(136, -171)
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_fxfpj")]
 

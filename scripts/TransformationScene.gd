@@ -1,6 +1,6 @@
 extends Control
 
-@export var transform_cost = 5
+@export var transform_cost = 3
 
 @onready var color_indicator = $CanvasLayer/ColorPick
 @onready var overlay = $CanvasLayer
@@ -10,14 +10,16 @@ var color_pointer = 0
 var form_color = 0
 
 func _ready() -> void:
-	SignalBus.turn_pausable.connect(if_paused)
-	SignalBus.turn_always.connect(not_paused)
-	SignalBus.repause.connect(pause_again)
+	set_process(false)
+	SignalBus.level_start.connect(_resume)
+	SignalBus.dead.connect(_pause)
+	SignalBus.is_paused.connect(_pause)
+	SignalBus.unpause.connect(_resume)
 	overlay.visible = false
 	color_switch(color_pointer)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("move_left"):
+	if Input.is_action_just_pressed("move_left") and !SignalBus.in_pause:
 		if color_pointer != 0:
 			color_pointer -= 1
 		else:
@@ -25,7 +27,7 @@ func _process(_delta: float) -> void:
 		
 		color_switch(color_pointer)
 		
-	if Input.is_action_just_pressed("move_right"):
+	if Input.is_action_just_pressed("move_right") and !SignalBus.in_pause:
 		if color_pointer != 3:
 			color_pointer += 1
 		else:
@@ -33,7 +35,7 @@ func _process(_delta: float) -> void:
 			
 		color_switch(color_pointer)
 		
-	if Input.is_action_just_pressed("transform"):
+	if Input.is_action_just_pressed("transform") and !SignalBus.in_pause:
 		if !SignalBus.in_transform:
 			SignalBus.hp_down.emit(transform_cost)
 			SignalBus.play_sound.emit("transform_start.mp3")
@@ -62,7 +64,6 @@ func transformation_end():
 	SignalBus.current_form = final_color
 	SignalBus.in_transform = false
 	overlay.visible = false
-	PauseManager.set_paused(false, "transformation")
 	
 	SignalBus.finish_transformation.emit(SignalBus.current_state, final_color)
 	SignalBus.hp_down.emit(transform_cost)
@@ -80,8 +81,6 @@ func color_check():
 			color_pointer = 1
 
 	overlay.visible = true
-	
-	PauseManager.set_paused(true, "transformation")
 		
 # Checking the color of the indicator
 func color_switch(pointer):
@@ -95,12 +94,8 @@ func color_switch(pointer):
 		3:
 			color_indicator.play("pick_blue")
 			
-func if_paused():
-	process_mode = Node.PROCESS_MODE_PAUSABLE
-
-func not_paused():
-	process_mode = Node.PROCESS_MODE_ALWAYS
+func _pause():
+	set_process(false)
 	
-func pause_again():
-	process_mode = Node.PROCESS_MODE_ALWAYS
-	get_tree().paused = true
+func _resume():
+	set_process(true)

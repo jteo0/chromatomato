@@ -5,10 +5,10 @@ var previous_scene: String
 
 func _ready():
 	previous_scene = _find_previous_scene_path()
-	
 	_connect_signal()
-	
 	_start_death_sequence()
+	BgmManager.stop_bgm()
+	get_viewport().set_input_as_handled()
 
 func _find_previous_scene_path() -> String:
 	for child in get_tree().root.get_children():
@@ -31,6 +31,8 @@ func _start_death_sequence():
 	_on_dead()
 
 func _on_dead():
+	SignalBus.respawn_count += 1
+	print(SignalBus.respawn_count)
 	deadtext.text = "DEAD"
 	
 	var tween = create_tween()
@@ -45,6 +47,8 @@ func _on_dead():
 	await tween.finished
 	
 	SignalBus.has_respawned = true
+	if SignalBus.respawn_count >= 2:
+		SignalBus.show_hint_button.emit()
 	
 	if previous_scene and ResourceLoader.exists(previous_scene):
 		get_tree().change_scene_to_file(previous_scene)

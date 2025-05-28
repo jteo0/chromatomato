@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cukf7m3sahy27"]
+
+[ext_resource type="Script" path="res://scripts/TomatoIndicator.gd" id="1_a4ymt"]
+[ext_resource type="Texture2D" uid="uid://bbsq23qouuxc8" path="res://assets/UI/arrow_ani.png" id="1_ydkvl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shbex"]
+atlas = ExtResource("1_ydkvl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syhrj"]
+atlas = ExtResource("1_ydkvl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xo20d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shbex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syhrj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TomatoIndicator" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_a4ymt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_xo20d")
+frame_progress = 0.52155
